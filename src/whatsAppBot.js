@@ -15,7 +15,7 @@ const startMessaging = (interval = 4000) => {
 }
 const evFire = (elem, elemType) => {
     let myEvent = document.createEvent("MouseEvent");
-    myEvent.initMouseEvent(elemType, 
+    myEvent.initMouseEvent(elemType,
                 true, true, window, 0, 0, 0, 0, 0,
                 false, false, false, false, 0, null);
     elem.dispatchEvent(myEvent);
@@ -34,7 +34,7 @@ const sMessg = () => {
         message = "message number: " + String(_i);
         messageBox.innerHTML = message.replace(/ /gm, '');
         _i++;
-        ev.initUIEvent
+        ev.initUIEvent;
         ev.initUIEvent('input', true, true, window, 1);
         messageBox.dispatchEvent(ev);
         evFire(document.querySelector('span[data-icon="send"]'), 'click');
