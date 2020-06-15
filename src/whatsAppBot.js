@@ -21,46 +21,22 @@ const evFire = (elem, elemType) => {
     elem.dispatchEvent(myEvent);
 }
 
-/* old function
-const sMessg = async () => {
+
+const sMessg = (textMessg = `message nº:" + ${_i}`) => {
     let messageBox = document.querySelectorAll("[contenteditable='true']")[1];
-    //message = selectMessage(usrName);
-    let message = "message number: " + String(_i);
-    //_i++;
-    // pack of number of times to send the message;
-    let counter = 5;
-    for(let n = 0; n < counter; n++){
-        let ev = document.createEvent("UIEvent");
-        message = "message number: " + String(_i);
-        messageBox.innerHTML = message.replace(/ /gm, '');
-        _i++;
-        ev.initUIEvent;
-        ev.initUIEvent('input', true, true, window, 1);
-        messageBox.dispatchEvent(ev);
-        evFire(document.querySelector('span[data-icon="send"]'), 'click');
-        await sleep(10000);
-    }
+    //let message = selectMessage(usrName);
+
+    let message = textMessg;
+    let ev = document.createEvent("UIEvent");
+   // message = "message number: " + String(_i);
+    messageBox.innerHTML = message.replace(/ /gm, '');
+    ev.initUIEvent;
+    ev.initUIEvent('input', true, true, window, 1);
+    messageBox.dispatchEvent(ev);
+    evFire(document.querySelector('span[data-icon="send"]'), 'click');
+    _i++;
 }
-*/
-const sMessg = async () => {
-    let messageBox = document.querySelectorAll("[contenteditable='true']")[1];
-    //message = selectMessage(usrName);
-    let message = "message number: " + String(_i);
-    //_i++;
-    // pack of number of times to send the message;
-    let counter = 5;
-    for(let n = 0; n < counter; n++){
-        let ev = document.createEvent("UIEvent");
-        message = "message number: " + String(_i);
-        messageBox.innerHTML = message.replace(/ /gm, '');
-        _i++;
-        ev.initUIEvent;
-        ev.initUIEvent('input', true, true, window, 1);
-        messageBox.dispatchEvent(ev);
-        evFire(document.querySelector('span[data-icon="send"]'), 'click');
-        await sleep(10000);
-    }
-}
+
 const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -76,5 +52,34 @@ const selectMessage = (usr) => {
             return "message"
     }
 }
+
+async function repSendMess(n){
+    for(let i = 0; i < n; i++){
+        let message = `vilaseca ojete calor ${i} `; 
+        sMessg(message);
+        await sleep(5000);
+    }
+}
+
+const mutationObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation);
+    });
+});
+
+// class from messages list container div -> z_tTQ
+// Starts listening for changes in the root HTML element of the page.
+
+let messListDiv = document.querySelector(".z_tTQ");
+mutationObserver.observe(messListDiv, {
+    //attributes: true,
+    //characterData: true,
+    childList: true
+    //subtree: true,
+    //attributeOldValue: true,
+    //characterDataOldValue: true
+});
+// to stop listener
+//mutationObserver.disconnect();
 
 simulateMouseEvents(document.querySelector('[title="' + name + '"]'), 'mousedown');
