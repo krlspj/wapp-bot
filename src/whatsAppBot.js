@@ -67,11 +67,14 @@ const mutationObserver = new MutationObserver(function(mutations) {
     });
 });
 
+
+simulateMouseEvents(document.querySelector('[title="' + name + '"]'), 'mousedown');
+
 // class from messages list container div -> z_tTQ
 // Starts listening for changes in the root HTML element of the page.
 
 let messListDiv = document.querySelector(".z_tTQ");
-mutationObserver.observe(messListDiv, {
+mutationObserver.observe(document.querySelector(".z_tTQ"), {
     //attributes: true,
     //characterData: true,
     childList: true
@@ -81,5 +84,3 @@ mutationObserver.observe(messListDiv, {
 });
 // to stop listener
 //mutationObserver.disconnect();
-
-simulateMouseEvents(document.querySelector('[title="' + name + '"]'), 'mousedown');
