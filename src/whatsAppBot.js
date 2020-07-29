@@ -84,3 +84,24 @@ mutationObserver.observe(document.querySelector(".z_tTQ"), {
 });
 // to stop listener
 //mutationObserver.disconnect();
+
+// Capture and treat events
+/**
+ * let mutEv;
+ * mutationObserver1 = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation);
+      console.log(typeof(mutation));
+      mutEv = mutation;
+    });
+   });
+   mutationObserver1.observe(document.querySelector(".z_tTQ"), {
+    //attributes: true,
+    //characterData: true,
+    childList: true
+    //subtree: true,
+    //attributeOldValue: true,
+    //characterDataOldValue: true
+});
+ --> content of the event:  mutEv.addedNodes[0].textContent
+ */
